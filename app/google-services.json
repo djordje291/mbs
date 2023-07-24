@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36778886706",
+    "project_id": "mbs-test-fadaf",
+    "storage_bucket": "mbs-test-fadaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36778886706:android:2df96ba9f164e268985e2b",
+        "android_client_info": {
+          "package_name": "com.djordjeratkovic.mbs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36778886706-te8re9vkdj93557k47g1472n0geo0kid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLscW6gI9hstPCmJx3FcqUSAbbXRld8O8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36778886706-te8re9vkdj93557k47g1472n0geo0kid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
