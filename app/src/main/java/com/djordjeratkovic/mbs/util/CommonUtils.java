@@ -1,5 +1,7 @@
 package com.djordjeratkovic.mbs.util;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,5 +24,11 @@ public class CommonUtils {
                 adapter.notifyItemChanged(position);
             }
         }
+    }
+
+    public static void changeIntent(Activity current, Class newActivity) {
+        Intent intent = new Intent(current, newActivity);
+        current.startActivity(intent);
+        current.finish();
     }
 }

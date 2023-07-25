@@ -3,4 +3,17 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="logo">Micro Business Solutions</string>
+    <string name="obavezno">Obavezno*</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="ulogovan">Ulogovan</string>
+    <string name="popunite_sva_polja">Popunite sva polja</string>
+    <string name="popunite_polje">Popunite polje</string>
+    <string name="login_failed">Login Failed : </string>
+    <string name="register_failed">Register Failed : </string>
+    <string name="ime_i_prezime">Ime i prezime</string>
+    <string name="grad">Grad</string>
+    <string name="magacini">Magacini</string>
 </resources>
