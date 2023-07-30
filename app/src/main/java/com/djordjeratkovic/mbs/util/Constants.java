@@ -18,4 +18,8 @@ public class Constants {
     public static final String KEY_CITY = "city";
     public static final String KEY_WAREHOUSES = "warehouses";
     public static final String KEY_USER_FIREBASE_ID = "userFirebaseId";
+    public static final String EMPLOYEE_DIALOG_TAG = "employee_dialog";
+    public static final String CUSTOMER_DIALOG_TAG = "customer_dialog";
+    public static final String WEATHER_URL = "https://api.openweathermap.org/data/3.0/";
+    public static final String WEATHER_API_KEY = "2fe662002a89fc8db04b171b53b089dd";
 }

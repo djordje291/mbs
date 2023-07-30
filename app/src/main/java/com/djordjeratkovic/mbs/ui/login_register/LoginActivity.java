@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.djordjeratkovic.mbs.R;
 import com.djordjeratkovic.mbs.databinding.ActivityLoginBinding;
+import com.djordjeratkovic.mbs.ui.home.HomeActivity;
 import com.djordjeratkovic.mbs.util.CommonUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,6 +21,7 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
     //TODO: prepravi ceo kod, promeni imena svuda i u xml
+    //TODO: on typing za register da izlazi error min 6 char i ovako ako ne popuni
 
     private ActivityLoginBinding binding;
     private LoginViewModel viewModel;
@@ -71,8 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-//                    UserMe.getInstance().setUserFirebaseID(firebaseUser.getUid());
-//                    CommonUtils.changeIntent(this, HomeActivity.class);
+                    CommonUtils.changeIntent(LoginActivity.this, HomeActivity.class);
                     Toast.makeText(LoginActivity.this, R.string.ulogovan, Toast.LENGTH_SHORT).show();
                 }
             }

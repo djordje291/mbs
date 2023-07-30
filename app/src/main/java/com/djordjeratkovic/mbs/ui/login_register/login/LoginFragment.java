@@ -17,8 +17,11 @@ import com.djordjeratkovic.mbs.R;
 import com.djordjeratkovic.mbs.databinding.FragmentLoginBinding;
 import com.djordjeratkovic.mbs.ui.login_register.login.LoadingFragmentViewModel;
 import com.djordjeratkovic.mbs.util.CommonUtils;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginFragment extends Fragment {
+    //TODO: change to commonUtils.checkField
 
     private FragmentLoginBinding binding;
 
@@ -77,5 +80,15 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private boolean checkFields(TextInputEditText editText, TextInputLayout textInputLayout) {
+        if (editText.getText().toString().trim().isEmpty()) {
+            textInputLayout.setError(getString(R.string.popunite_polje));
+            return false;
+        } else {
+            textInputLayout.setError(null);
+            return true;
+        }
     }
 }

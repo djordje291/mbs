@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.djordjeratkovic.mbs.R;
@@ -13,6 +14,9 @@ import com.djordjeratkovic.mbs.model.Customer;
 import com.djordjeratkovic.mbs.model.Employee;
 import com.djordjeratkovic.mbs.model.User;
 import com.djordjeratkovic.mbs.model.Warehouse;
+import com.djordjeratkovic.mbs.model.WeatherAPI;
+import com.djordjeratkovic.mbs.repository.network.WeatherAPIClient;
+import com.djordjeratkovic.mbs.repository.network.WeatherAPIService;
 import com.djordjeratkovic.mbs.ui.login_register.LoginActivity;
 import com.djordjeratkovic.mbs.util.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,12 +28,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MBSRepository {
     private static final String TAG = "MBSR";
@@ -47,6 +61,12 @@ public class MBSRepository {
     private CollectionReference customerReference;
     private CollectionReference warehouseReference;
 
+    private List<Employee> employeeList = new ArrayList<>();
+    private MutableLiveData<List<Employee>> employees = new MutableLiveData<>();
+    private List<Customer> customerList = new ArrayList<>();
+    private MutableLiveData<List<Customer>> customers = new MutableLiveData<>();
+
+    private MutableLiveData<WeatherAPI> weatherAPI = new MutableLiveData<>();
 
     public MBSRepository() {
         this.firebaseAuth = FirebaseAuth.getInstance();
@@ -86,6 +106,7 @@ public class MBSRepository {
 
     public void logOut() {
         firebaseAuth.signOut();
+        userMutableLiveData.postValue(null);
         loggedOutMutableLiveData.postValue(true);
     }
 
@@ -152,7 +173,7 @@ public class MBSRepository {
     }
 
     public void addEmployee(Employee employee) {
-        customerReference.add(employee)
+        employeeReference.add(employee)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -262,5 +283,98 @@ public class MBSRepository {
                 Log.d(TAG, "onFailure: failed to delete customer");
             }
         });
+    }
+
+    public MutableLiveData<List<Employee>> getEmployees() {
+        employeeReference.orderBy(Constants.KEY_LAST_NAME).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.d(TAG, error.toString());
+
+                    return;
+                }
+
+                if (value != null && !value.isEmpty()) {
+                    if (!employeeList.isEmpty()) {
+                        employeeList.clear();
+                    }
+                    for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
+                        Employee employee = documentSnapshot.toObject(Employee.class);
+                        if (employee != null) {
+                            employee.setDocRef(documentSnapshot.getId());
+                        }
+                        employeeList.add(employee);
+                    }
+                    employees.postValue(employeeList);
+                } else {
+                    if (!employeeList.isEmpty()) {
+                        employeeList.clear();
+                    }
+                    employees.postValue(employeeList);
+                }
+            }
+        });
+        employees.setValue(employeeList);
+        return employees;
+    }
+
+    public MutableLiveData<List<Customer>> getCustomers() {
+        customerReference.orderBy(Constants.KEY_NAME).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.d(TAG, error.toString());
+
+                    return;
+                }
+
+                if (value != null && !value.isEmpty()) {
+                    if (!customerList.isEmpty()) {
+                        customerList.clear();
+                    }
+                    for (DocumentSnapshot documentSnapshot : value.getDocuments()) {
+                        Customer customer = documentSnapshot.toObject(Customer.class);
+                        if (customer != null) {
+                            customer.setDocRef(documentSnapshot.getId());
+                        }
+                        customerList.add(customer);
+                    }
+                    customers.postValue(customerList);
+                } else {
+                    if (!customerList.isEmpty()) {
+                        customerList.clear();
+                    }
+                    customers.postValue(customerList);
+                }
+            }
+        });
+        customers.setValue(customerList);
+        return customers;
+    }
+
+
+    public MutableLiveData<WeatherAPI> getWeather() {
+        Call<WeatherAPI> weatherCall = WeatherAPIClient.getClient()
+                .create(WeatherAPIService.class)
+                .getWeatherInfo(44.78f, 20.45f, "current,hourly", Constants.WEATHER_API_KEY);
+        weatherCall.enqueue(new Callback<WeatherAPI>() {
+            @Override
+            public void onResponse(Call<WeatherAPI> call, Response<WeatherAPI> response) {
+                if (!response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: failed call");
+                    return;
+                }
+                if (response.body() != null) {
+                    weatherAPI.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WeatherAPI> call, Throwable t) {
+                Log.d(TAG, "onFailure: failed call");
+            }
+        });
+        return weatherAPI;
     }
 }

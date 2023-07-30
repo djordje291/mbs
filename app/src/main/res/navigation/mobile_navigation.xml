@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigationEmployee">
+
+    <fragment
+        android:id="@+id/navigationEmployee"
+        android:name="com.djordjeratkovic.mbs.ui.home.ui.employee.EmployeeFragment"
+        android:label="@string/employee"
+        tools:layout="@layout/fragment_employee" />
+
+    <fragment
+        android:id="@+id/navigationCustomer"
+        android:name="com.djordjeratkovic.mbs.ui.home.ui.customer.CustomerFragment"
+        android:label="@string/customer"
+        tools:layout="@layout/fragment_customer" />
+
+    <fragment
+        android:id="@+id/navigationWeather"
+        android:name="com.djordjeratkovic.mbs.ui.home.ui.weather.WeatherFragment"
+        android:label="@string/weather"
+        tools:layout="@layout/fragment_weather" />
+</navigation>

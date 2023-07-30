@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MBS</string>
     <string name="login">Login</string>
+    <string name="logout">Log out</string>
     <string name="register">Register</string>
     <string name="logo">Micro Business Solutions</string>
     <string name="obavezno">Obavezno*</string>
@@ -14,6 +15,29 @@
     <string name="login_failed">Login Failed : </string>
     <string name="register_failed">Register Failed : </string>
     <string name="ime_i_prezime">Ime i prezime</string>
-    <string name="grad">Grad</string>
+    <string name="city">Grad</string>
     <string name="magacini">Magacini</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="employee">Zaposleni</string>
+    <string name="customer">Kupci</string>
+    <string name="weather">Vreme</string>
+    <string name="logout_question">Da li ste sigurni da zelite da se odjavite?</string>
+    <string name="delete_question">Da li ste sigurni da zelite da obrisete?</string>
+    <string name="otkazi">Otkaži</string>
+    <string name="potvrdi">Potvrdi</string>
+    <string name="odjavljen">Odjavljen</string>
+    <string name="prazno">Prazno</string>
+    <string name="first_name">Ime</string>
+    <string name="last_name">Prezime</string>
+    <string name="add_warehouse">Dodaj Magacin</string>
+    <string name="new_employee">Novi zaposleni</string>
+    <string name="sacuvaj">Sacuvaj</string>
+    <string name="ne_moze_biti_prazno">Ne moze biti prazno</string>
+    <string name="warehouse">Magacin</string>
+    <string name="copied">Kopirano</string>
+    <string name="employee_id">Sifra zaposlenog</string>
+    <string name="pib">PIB</string>
+    <string name="delete">Obrisi</string>
+    <string name="error">Greska</string>
+    <string name="no_employee">Nema nijedan zaposleni</string>
 </resources>
