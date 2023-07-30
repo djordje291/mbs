@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDialog extends DialogFragment {
-    //TODO: prosiri limite za editText i promeni layout
 
     private DialogEmployeeBinding binding;
     private EmployeeDialogViewModel employeeDialogViewModel;
@@ -137,4 +136,5 @@ public class EmployeeDialog extends DialogFragment {
         warehouses.add(warehouse);
         Log.d("DJOKENAJA", "setWarehouse: " + warehouse.toString());
     }
+
 }

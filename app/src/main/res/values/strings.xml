@@ -47,4 +47,5 @@
     <string name="pritisak">Pritisak</string>
     <string name="vlaznost_vazduha">Vlaznost vazduha</string>
     <string name="failed_to_find_city">Neuspesno nalazenje grada</string>
+    <string name="naziv">Naziv</string>
 </resources>

@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="weather"
             type="com.djordjeratkovic.mbs.model.Weather" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,75 +19,79 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnim"
-            app:lottie_rawRes="@raw/weather"
             android:layout_width="0dp"
-            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
             android:layout_height="0dp"
+            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/guideline5"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/weather" />
 
         <TextView
             android:id="@+id/temperature"
             android:layout_width="0dp"
-            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toBottomOf="@id/lottieAnim"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="@dimen/_23ssp"
-            android:textColor="@color/yellow"
             android:text="@{weather != null ? String.valueOf((int) weather.temperature) + `°` : null}"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/_32ssp"
+            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/lottieAnim" />
 
         <TextView
             android:id="@+id/pressureTV"
-            android:text="@string/pritisak"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/temperature"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:text="@string/pritisak"
+            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="@id/guideline4"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@id/temperature" />
 
         <TextView
             android:id="@+id/pressure"
             android:layout_width="0dp"
-            android:layout_marginTop="@dimen/dimen_12"
-            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
-            android:text="@{weather != null ? Integer.toString(weather.pressure) : null}"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/pressureTV"
+            android:text="@{weather != null ? Integer.toString(weather.pressure) : null}"
+            android:textColor="@color/blue_light"
+            android:textSize="@dimen/_16ssp"
+            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="@id/guideline4"/>
+            app:layout_constraintTop_toBottomOf="@id/pressureTV" />
 
         <TextView
             android:id="@+id/humidityTV"
-            android:text="@string/vlaznost_vazduha"
-            android:layout_marginTop="@dimen/dimen_20"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:text="@string/vlaznost_vazduha"
             android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toBottomOf="@id/temperature"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline4"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@id/temperature" />
 
         <TextView
             android:id="@+id/humidity"
             android:layout_width="0dp"
-            android:layout_marginTop="@dimen/dimen_12"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12"
             android:gravity="center"
-            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toBottomOf="@id/humidityTV"
             android:text="@{weather != null ? Integer.toString(weather.humidity) + `%`: null}"
+            android:textColor="@color/blue_light"
+            android:textSize="@dimen/_16ssp"
+            android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline4"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+            app:layout_constraintTop_toBottomOf="@id/humidityTV" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/city"
@@ -102,15 +108,15 @@
             app:errorIconDrawable="@drawable/ic_error"
             app:helperText="@string/obavezno"
             app:helperTextTextColor="@color/red"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toTopOf="@id/guideline3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/cityEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:maxLength="20"
                 android:maxLines="1"
                 android:textSize="@dimen/_13ssp" />
@@ -122,10 +128,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/trenutno_vreme"
-            app:layout_constraintTop_toBottomOf="@id/city"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/city" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -154,12 +160,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

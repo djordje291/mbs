@@ -17,9 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_12"
+        android:layout_marginBottom="@dimen/dimen_12"
         android:paddingBottom="@dimen/dimen_12"
-        android:animateLayoutChanges="true"
         android:background="@drawable/customer_background">
 
         <TextView

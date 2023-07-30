@@ -30,13 +30,25 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnim"
+            app:lottie_rawRes="@raw/forklift"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/firstName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:layout_marginEnd="@dimen/dimen_12"
             android:hint="@string/first_name"
             app:counterEnabled="true"
             app:counterMaxLength="20"
@@ -45,18 +57,18 @@
             app:errorIconDrawable="@drawable/ic_error"
             app:helperText="@string/obavezno"
             app:helperTextTextColor="@color/red"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+            app:layout_constraintTop_toTopOf="@id/guideline3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
+                android:inputType="textPersonName"
                 android:maxLength="20"
                 android:maxLines="1"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_11ssp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,8 +76,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/dimen_12"
             android:hint="@string/last_name"
             app:counterEnabled="true"
             app:counterMaxLength="20"
@@ -75,17 +87,17 @@
             app:helperText="@string/obavezno"
             app:helperTextTextColor="@color/red"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/firstName">
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@id/guideline3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lastNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
+                android:inputType="textPersonName"
                 android:maxLength="20"
                 android:maxLines="1"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_11ssp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -93,8 +105,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:layout_marginEnd="@dimen/dimen_12"
             android:hint="@string/city"
             app:counterEnabled="true"
             app:counterMaxLength="20"
@@ -103,26 +115,24 @@
             app:errorIconDrawable="@drawable/ic_error"
             app:helperText="@string/obavezno"
             app:helperTextTextColor="@color/red"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/lastName">
+            app:layout_constraintTop_toBottomOf="@id/firstName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/cityEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:maxLength="20"
                 android:maxLines="1"
-                android:textSize="@dimen/_13ssp" />
+                android:textSize="@dimen/_11ssp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ScrollView
             android:id="@+id/warehousesSV"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
             android:fadeScrollbars="false"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@id/addWarehouse"
@@ -160,6 +170,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

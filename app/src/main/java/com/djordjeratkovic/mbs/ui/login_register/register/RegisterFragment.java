@@ -1,5 +1,6 @@
 package com.djordjeratkovic.mbs.ui.login_register.register;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding binding;
-
+    private Context context;
     private RegisterFragmentViewModel viewModel;
 
     public RegisterFragment() {
@@ -37,6 +38,8 @@ public class RegisterFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(RegisterFragmentViewModel.class);
 
+        context = getContext();
+
         setListeners();
 
         return root;
@@ -46,29 +49,11 @@ public class RegisterFragment extends Fragment {
         binding.createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                boolean empty = false;
-//                if (binding.nameEditText.getText().toString().trim().isEmpty()) {
-//                    binding.name.setError(getString(R.string.popunite_polje));
-//                    empty = true;
-//                } else {
-//                    binding.name.setError(null);
-//                }
-//                if (binding.emailEditText.getText().toString().trim().isEmpty()) {
-//                    binding.email.setError(getString(R.string.popunite_polje));
-//                    empty = true;
-//                }else {
-//                    binding.email.setError(null);
-//                }
-//                if (binding.passwordEditText.getText().toString().trim().isEmpty()) {
-//                    binding.password.setError(getString(R.string.popunite_polje));
-//                    empty = true;
-//                }else {
-//                    binding.password.setError(null);
-//                }
-                if (checkFields(binding.nameEditText, binding.name) &&
-                    checkFields(binding.emailEditText, binding.email) &&
-                    checkFields(binding.passwordEditText, binding.password)) {
-//                if (!empty) {
+
+                if (CommonUtils.checkField(binding.nameEditText, binding.name, context) &&
+                    CommonUtils.checkField(binding.emailEditText, binding.email, context) &&
+                    CommonUtils.checkField(binding.passwordEditText, binding.password, context)) {
+
                     CommonUtils.loading(binding.loading, true);
                     CommonUtils.loading(binding.createAccount, false);
 
@@ -88,15 +73,5 @@ public class RegisterFragment extends Fragment {
                 }
             }
         });
-    }
-
-    private boolean checkFields(TextInputEditText editText, TextInputLayout textInputLayout) {
-        if (editText.getText().toString().trim().isEmpty()) {
-            textInputLayout.setError(getString(R.string.popunite_polje));
-            return false;
-        } else {
-            textInputLayout.setError(null);
-            return true;
-        }
     }
 }

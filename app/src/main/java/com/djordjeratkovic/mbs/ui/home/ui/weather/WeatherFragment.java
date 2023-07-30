@@ -30,6 +30,7 @@ import com.djordjeratkovic.mbs.util.CommonUtils;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class WeatherFragment extends Fragment {
+    //TODO: popravi layout
 
     private FragmentWeatherBinding binding;
     private WeatherViewModel viewModel;

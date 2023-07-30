@@ -19,9 +19,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/warehouse"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="30"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
+            android:layout_marginTop="@dimen/dimen_12"
             app:errorIconDrawable="@drawable/ic_error"
             app:helperText="@string/obavezno"
             app:helperTextTextColor="@color/red"
@@ -33,11 +34,11 @@
                 android:id="@+id/warehouseEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:text="@{warehouse.name}"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:maxLines="1"
-                android:textSize="13sp" />
+                android:textSize="@dimen/_11ssp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

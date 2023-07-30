@@ -48,7 +48,7 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
 
     private FragmentCustomerBinding binding;
     private List<Employee> employeeList = new ArrayList<>();
-    private List<Customer> selectedCustomerList = new ArrayList<>();
+    private List<Customer> fullCustomerList = new ArrayList<>();
     private CustomerViewModel viewModel;
     private CustomerAdapter customerAdapter;
     private List<Customer> customerList = new ArrayList<>();
@@ -91,17 +91,28 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
         binding.dropDown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO: preberi customers
                 changeList(employeeList.get(i));
+                CommonUtils.refreshAdapter(customerAdapter, null);
+                checkIfEmpty();
             }
         });
     }
 
+    private void checkIfEmpty() {
+        if (customerList.isEmpty()) {
+            CommonUtils.loading(binding.empty, true);
+            CommonUtils.loading(binding.lottieAnim, true);
+        } else {
+            CommonUtils.loading(binding.empty, false);
+            CommonUtils.loading(binding.lottieAnim, false);
+        }
+    }
+
     private void changeList(Employee employee) {
-        selectedCustomerList.clear();
-        for (Customer customer : customerList) {
+        customerList.clear();
+        for (Customer customer : fullCustomerList) {
             if (customer.getEmployeeDocRef().equals(employee.getDocRef())) {
-                selectedCustomerList.add(customer);
+                customerList.add(customer);
             }
         }
     }
@@ -179,7 +190,11 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
                 if (!customerList.isEmpty()) {
                     customerList.clear();
                 }
+                if (!fullCustomerList.isEmpty()) {
+                    fullCustomerList.clear();
+                }
                 customerList.addAll(customers);
+                fullCustomerList.addAll(customers);
 
                 CommonUtils.loading(binding.empty, false);
                 CommonUtils.loading(binding.lottieAnim, false);
@@ -189,6 +204,7 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
                 CommonUtils.refreshAdapter(customerAdapter, null);
             } else {
                 customerList.clear();
+                fullCustomerList.clear();
 //                binding.dropDownLayout.setVisibility(View.GONE);
                 new Sleeper(binding.empty, binding.loading, customers, customerList, binding.lottieAnim).start();
                 CommonUtils.refreshAdapter(customerAdapter, null);

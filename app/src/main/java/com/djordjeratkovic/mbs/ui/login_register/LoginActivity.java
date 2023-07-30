@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
-    //TODO: prepravi ceo kod, promeni imena svuda i u xml
-    //TODO: on typing za register da izlazi error min 6 char i ovako ako ne popuni
 
     private ActivityLoginBinding binding;
     private LoginViewModel viewModel;
@@ -74,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
                     CommonUtils.changeIntent(LoginActivity.this, HomeActivity.class);
-                    Toast.makeText(LoginActivity.this, R.string.ulogovan, Toast.LENGTH_SHORT).show();
                 }
             }
         });

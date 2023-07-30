@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeFragment extends Fragment {
-    //TODO: popravi sto prikazuje samo jedan magacin
 
     private FragmentEmployeeBinding binding;
     private Context context;

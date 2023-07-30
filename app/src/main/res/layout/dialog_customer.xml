@@ -38,11 +38,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
-            android:hint="@string/first_name"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:hint="@string/naziv"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="30"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/ic_error"
@@ -56,11 +55,11 @@
                 android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:text="@{customer.name}"
-                android:maxLength="20"
+                android:maxLength="30"
                 android:maxLines="1"
-                android:textSize="13sp" />
+                android:textSize="@dimen/_13ssp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,11 +67,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8"
-            android:layout_marginBottom="@dimen/dimen_8"
+            android:layout_marginTop="@dimen/dimen_20"
             android:hint="@string/pib"
             app:counterEnabled="true"
-            app:counterMaxLength="11"
+            app:counterMaxLength="9"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/ic_error"
@@ -87,10 +85,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="number"
-                android:text="@{Long.toString(customer.PIB)}"
+                android:text="@{customer != null ? Long.toString(customer.PIB) : null}"
                 android:maxLength="9"
                 android:maxLines="1"
-                android:textSize="13sp" />
+                android:textSize="@dimen/_13ssp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -127,13 +125,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
