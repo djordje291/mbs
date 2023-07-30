@@ -45,7 +45,6 @@ import java.util.List;
 
 
 public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
-    //TODO: set dropdown to null
 
     private FragmentCustomerBinding binding;
     private List<Employee> employeeList = new ArrayList<>();

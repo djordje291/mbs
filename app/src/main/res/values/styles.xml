@@ -9,12 +9,12 @@
     </style>
 
     <style name="AppTheme.FullScreenDialog" parent="Theme.Material3.Light.Dialog">
-        <item name="colorPrimaryDark">@color/blue</item>
-        <item name="colorAccent">@color/red_light</item>
-        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorPrimary">@color/red_light</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="actionMenuTextColor">@color/blue</item>
+        <item name="actionMenuTextColor">@color/black</item>
     </style>
 
     <style name="AppTheme.Slide">

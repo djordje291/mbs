@@ -56,6 +56,8 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
+        app:backgroundTint="@color/blue_light"
+        app:tint="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_12"
         android:src="@drawable/ic_add"
