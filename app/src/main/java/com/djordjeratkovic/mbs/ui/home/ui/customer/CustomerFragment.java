@@ -45,6 +45,7 @@ import java.util.List;
 
 
 public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
+    //TODO: set dropdown to null
 
     private FragmentCustomerBinding binding;
     private List<Employee> employeeList = new ArrayList<>();
@@ -140,7 +141,7 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
         requireActivity().addMenuProvider(new MenuProvider() {
             @Override
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                menuInflater.inflate(R.menu.employee_menu, menu);
+                menuInflater.inflate(R.menu.customer_menu, menu);
             }
 
             @Override
@@ -199,13 +200,14 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
                 CommonUtils.loading(binding.empty, false);
                 CommonUtils.loading(binding.lottieAnim, false);
                 CommonUtils.loading(binding.loading, false);
-//                binding.dropDownLayout.setVisibility(View.VISIBLE);
+                binding.dropDownLayout.setVisibility(View.VISIBLE);
+                binding.dropDown.setText("");
 
                 CommonUtils.refreshAdapter(customerAdapter, null);
             } else {
                 customerList.clear();
                 fullCustomerList.clear();
-//                binding.dropDownLayout.setVisibility(View.GONE);
+                binding.dropDownLayout.setVisibility(View.GONE);
                 new Sleeper(binding.empty, binding.loading, customers, customerList, binding.lottieAnim).start();
                 CommonUtils.refreshAdapter(customerAdapter, null);
             }
@@ -215,6 +217,12 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        binding.dropDown.setText("");
     }
 
     @Override

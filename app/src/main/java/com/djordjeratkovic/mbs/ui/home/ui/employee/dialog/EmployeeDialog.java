@@ -87,7 +87,6 @@ public class EmployeeDialog extends DialogFragment {
             CommonUtils.checkField(binding.lastNameEditText, binding.lastName, context) &&
             CommonUtils.checkField(binding.cityEditText, binding.city, context) &&
             checkWarehouses()) {
-            Log.d("DJOKENAJA", "setWarehouse: desilose se" );
 
             Employee employee = new Employee();
 
@@ -99,7 +98,6 @@ public class EmployeeDialog extends DialogFragment {
             employeeDialogViewModel.addEmployee(employee);
             return true;
         } else {
-            Log.d("DJOKENAJA", "setWarehouse: nije se desilo" );
             return false;
         }
     }
@@ -134,7 +132,6 @@ public class EmployeeDialog extends DialogFragment {
     private void setWarehouse() {
         Warehouse warehouse = new Warehouse();
         warehouses.add(warehouse);
-        Log.d("DJOKENAJA", "setWarehouse: " + warehouse.toString());
     }
 
 }

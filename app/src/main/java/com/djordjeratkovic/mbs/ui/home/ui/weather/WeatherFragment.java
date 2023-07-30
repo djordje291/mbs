@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,9 +58,11 @@ public class WeatherFragment extends Fragment {
         viewModel.getWeather().observe(getViewLifecycleOwner(), new Observer<WeatherAPI>() {
             @Override
             public void onChanged(WeatherAPI weatherAPI) {
-                if (weatherAPI.getWeather() != null) {
-                    binding.setWeather(weatherAPI.getWeather());
-                    binding.city.setError(null);
+                if (weatherAPI != null) {
+                    if (weatherAPI.getWeather() != null) {
+                        binding.setWeather(weatherAPI.getWeather());
+                        binding.city.setError(null);
+                    }
                 } else {
                     binding.city.setError(getString(R.string.failed_to_find_city));
                 }
@@ -71,7 +74,7 @@ public class WeatherFragment extends Fragment {
         binding.getWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (CommonUtils.checkField(binding.cityEditText,binding.city,getContext())) {
+                if (CommonUtils.checkField(binding.cityEditText, binding.city, getContext())) {
                     viewModel.checkWeather(binding.cityEditText.getText().toString().trim());
                     binding.city.setError(null);
                 } else {

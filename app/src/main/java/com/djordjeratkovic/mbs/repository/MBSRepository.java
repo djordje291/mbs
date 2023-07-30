@@ -331,6 +331,7 @@ public class MBSRepository {
             public void onResponse(Call<WeatherAPI> call, Response<WeatherAPI> response) {
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "onResponse: failed call");
+                    weatherAPI.setValue(null);
                     return;
                 }
                 if (response.body() != null) {
@@ -341,6 +342,7 @@ public class MBSRepository {
             @Override
             public void onFailure(Call<WeatherAPI> call, Throwable t) {
                 Log.d(TAG, "onFailure: failed call");
+                weatherAPI.setValue(null);
             }
         });
     }

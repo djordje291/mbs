@@ -28,7 +28,6 @@ public class EmployeeDialogAdapter extends RecyclerView.Adapter<EmployeeDialogAd
     public EmployeeDialogAdapter(List<Warehouse> warehouses, Context context) {
         this.warehouses = warehouses;
         this.context = context;
-        Log.d("DJOKENAJA", "setWarehouse: " + warehouses.toString());
     }
 
     @NonNull
