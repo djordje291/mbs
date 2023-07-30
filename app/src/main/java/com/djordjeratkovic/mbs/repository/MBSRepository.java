@@ -219,24 +219,6 @@ public class MBSRepository {
         });
     }
 
-//    public void updateEmployee(Employee employee) {
-//        Map<String, Object> updates = new HashMap<>();
-//        updates.put(Constants.KEY_FIRST_NAME, employee.getFirstName());
-//        updates.put(Constants.KEY_LAST_NAME, employee.getLastName());
-//        updates.put(Constants.KEY_CITY, employee.getCity());
-//        updates.put(Constants.KEY_WAREHOUSES, employee.getWarehouses());
-//        employeeReference.document(employee.getDocRef()).update(updates).addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//                Log.d(TAG, "onSuccess: updated employee");
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.d(TAG, "onFailure: failed to update employee");
-//            }
-//        });
-//    }
 
     public void updateCustomer(Customer customer) {
         Map<String, Object> updates = new HashMap<>();
@@ -256,20 +238,6 @@ public class MBSRepository {
         });
     }
 
-//    public void deleteEmployee(Employee employee) {
-//        employeeReference.document(employee.getDocRef()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-//            @Override
-//            public void onSuccess(Void unused) {
-//                Log.d(TAG, "onSuccess: deleted employee");
-//                //TODO: delete magacine i vidi kako ces kad ih updejtujes
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.d(TAG, "onFailure: failed to delete employee");
-//            }
-//        });
-//    }
 
     public void deleteCustomer(Customer customer) {
         customerReference.document(customer.getDocRef()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -354,10 +322,10 @@ public class MBSRepository {
     }
 
 
-    public MutableLiveData<WeatherAPI> getWeather() {
+    public void checkWeather(String city) {
         Call<WeatherAPI> weatherCall = WeatherAPIClient.getClient()
                 .create(WeatherAPIService.class)
-                .getWeatherInfo(44.78f, 20.45f, "current,hourly", Constants.WEATHER_API_KEY);
+                .getWeatherInfo(city, Constants.WEATHER_UNIT, Constants.WEATHER_API_KEY);
         weatherCall.enqueue(new Callback<WeatherAPI>() {
             @Override
             public void onResponse(Call<WeatherAPI> call, Response<WeatherAPI> response) {
@@ -375,6 +343,9 @@ public class MBSRepository {
                 Log.d(TAG, "onFailure: failed call");
             }
         });
+    }
+
+    public MutableLiveData<WeatherAPI> getWeather() {
         return weatherAPI;
     }
 }

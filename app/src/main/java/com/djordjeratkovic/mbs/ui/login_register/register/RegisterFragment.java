@@ -21,7 +21,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterFragment extends Fragment {
-    //TODO: password mora duzina barem 6 characters
 
     private FragmentRegisterBinding binding;
 

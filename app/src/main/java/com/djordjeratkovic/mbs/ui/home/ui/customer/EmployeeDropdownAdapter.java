@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.djordjeratkovic.mbs.R;
+import com.djordjeratkovic.mbs.databinding.DropdownItemBinding;
 import com.djordjeratkovic.mbs.model.Employee;
 
 import java.util.List;
@@ -21,15 +22,13 @@ public class EmployeeDropdownAdapter extends ArrayAdapter<Employee> {
 
     private List<Employee> employees;
     private Context context;
+    private DropdownItemBinding binding;
 
 
     public EmployeeDropdownAdapter(@NonNull Context context, @NonNull List<Employee> objects) {
-        super(context, 0, objects);
+        super(context, R.layout.dropdown_item, objects);
         this.employees = objects;
         this.context = context;
-        for (Employee employee : employees) {
-            Log.d("CIRILO", "EmployeeDropdownAdapter: " + employee.getLastName());
-        }
     }
 
     @Override
@@ -51,45 +50,22 @@ public class EmployeeDropdownAdapter extends ArrayAdapter<Employee> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.dropdown_item, parent, false);
+        View view = convertView;
+        if (view == null) {
+            binding = DropdownItemBinding.inflate(LayoutInflater.from(context), parent, false);
+            view = binding.getRoot();
+            view.setTag(binding);
+        } else {
+            binding = (DropdownItemBinding) view.getTag();
         }
 
-        TextView textView = convertView.findViewById(R.id.dropDownItem);
+        binding.dropDownItem.setText(employees.get(position).toString());
 
-        Employee employee = getItem(position);
-
-        if (employee != null) {
-            textView.setText(employee.getFirstName());
-        }
-
-        return convertView;
+        return view;
     }
 
-
-    @NonNull
     @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                FilterResults results = new FilterResults();
-                results.values = employees;
-                results.count = employees.size();
-                return results;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                clear();
-                addAll((List<Employee>) filterResults.values);
-                notifyDataSetChanged();
-            }
-
-            @Override
-            public CharSequence convertResultToString(Object resultValue) {
-                return ((Employee) resultValue).getFirstName() + " " + ((Employee) resultValue).getLastName();
-            }
-        };
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        return getView(position, convertView, parent);
     }
 }

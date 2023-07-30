@@ -51,4 +51,9 @@ public class Employee {
     public void setDocRef(String docRef) {
         this.docRef = docRef;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

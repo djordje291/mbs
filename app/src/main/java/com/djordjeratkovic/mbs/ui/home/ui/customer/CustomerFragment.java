@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,7 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
 
     private FragmentCustomerBinding binding;
     private List<Employee> employeeList = new ArrayList<>();
+    private List<Customer> selectedCustomerList = new ArrayList<>();
     private CustomerViewModel viewModel;
     private CustomerAdapter customerAdapter;
     private List<Customer> customerList = new ArrayList<>();
@@ -78,21 +80,30 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: provali ovo
-//                if (!employeeList.isEmpty()) {
+                if (!employeeList.isEmpty()) {
                     CustomerDialog customerDialog = new CustomerDialog(null, employeeList);
                     customerDialog.show(getParentFragmentManager(), Constants.CUSTOMER_DIALOG_TAG);
-//                } else {
-//                    Toast.makeText(context, getString(R.string.no_employee), Toast.LENGTH_SHORT).show();
-//                }
+                } else {
+                    Toast.makeText(context, getString(R.string.no_employee), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         binding.dropDown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //TODO: preberi customers
+                changeList(employeeList.get(i));
             }
         });
+    }
+
+    private void changeList(Employee employee) {
+        selectedCustomerList.clear();
+        for (Customer customer : customerList) {
+            if (customer.getEmployeeDocRef().equals(employee.getDocRef())) {
+                selectedCustomerList.add(customer);
+            }
+        }
     }
 
     private void setAdapters() {
@@ -105,12 +116,13 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
         SwipeToDeleteAndEditCallback callback = new SwipeToDeleteAndEditCallback(context, customerAdapter, this);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
         itemTouchHelper.attachToRecyclerView(binding.customerRV);
+
+        setArrayAdapter();
     }
 
     private void setArrayAdapter() {
         employeeDropdownAdapter = new EmployeeDropdownAdapter(context, employeeList);
         binding.dropDown.setAdapter(employeeDropdownAdapter);
-        binding.dropDown.setThreshold(1);
     }
 
     private void setupMenu() {
@@ -129,7 +141,6 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
                                 .setPositiveButton(R.string.potvrdi, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        //TODO: logoutuj
                                         viewModel.logout();
                                         Intent intent = new Intent(getActivity(), LoginActivity.class);
                                         startActivity(intent);
@@ -157,10 +168,7 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
                 }
                 employeeList.addAll(employees);
 
-                setArrayAdapter();
-
                 employeeDropdownAdapter.notifyDataSetChanged();
-                Log.d("OJSAOJSA", "setObservers: " + employeeList.get(0).toString());
             } else {
                 employeeList.clear();
                 employeeDropdownAdapter.notifyDataSetChanged();
@@ -180,7 +188,7 @@ public class CustomerFragment extends Fragment implements ItemTouchHelperEdit {
 
                 CommonUtils.refreshAdapter(customerAdapter, null);
             } else {
-                employeeList.clear();
+                customerList.clear();
 //                binding.dropDownLayout.setVisibility(View.GONE);
                 new Sleeper(binding.empty, binding.loading, customers, customerList, binding.lottieAnim).start();
                 CommonUtils.refreshAdapter(customerAdapter, null);

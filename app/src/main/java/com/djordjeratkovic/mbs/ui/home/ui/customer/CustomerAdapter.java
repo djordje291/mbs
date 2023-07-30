@@ -78,11 +78,13 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         viewModel.deleteCustomer(customers.get(position));
+                        notifyItemRemoved(position);
                     }
                 })
                 .setNegativeButton(R.string.otkazi, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        notifyItemChanged(position);
                     }
                 });
         builder.show();

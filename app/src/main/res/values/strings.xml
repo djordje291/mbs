@@ -5,6 +5,7 @@
     <string name="register">Register</string>
     <string name="logo">Micro Business Solutions</string>
     <string name="obavezno">Obavezno*</string>
+    <string name="minimum_6_karaktera">Minimum 6 karaktera*</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -31,6 +32,8 @@
     <string name="last_name">Prezime</string>
     <string name="add_warehouse">Dodaj Magacin</string>
     <string name="new_employee">Novi zaposleni</string>
+    <string name="new_customer">Novi kupac</string>
+    <string name="update_customer">Azuriraj kupca</string>
     <string name="sacuvaj">Sacuvaj</string>
     <string name="ne_moze_biti_prazno">Ne moze biti prazno</string>
     <string name="warehouse">Magacin</string>
@@ -40,4 +43,8 @@
     <string name="delete">Obrisi</string>
     <string name="error">Greska</string>
     <string name="no_employee">Nema nijedan zaposleni</string>
+    <string name="trenutno_vreme">Trenutno vreme</string>
+    <string name="pritisak">Pritisak</string>
+    <string name="vlaznost_vazduha">Vlaznost vazduha</string>
+    <string name="failed_to_find_city">Neuspesno nalazenje grada</string>
 </resources>

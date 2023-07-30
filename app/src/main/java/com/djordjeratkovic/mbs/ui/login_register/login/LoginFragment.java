@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginFragment extends Fragment {
     //TODO: change to commonUtils.checkField
+    //TODO: add font
 
     private FragmentLoginBinding binding;
 

@@ -22,8 +22,6 @@ import java.util.List;
 
 public class EmployeeDialogAdapter extends RecyclerView.Adapter<EmployeeDialogAdapter.ViewHolder> {
 
-    //TODO: add delete button
-
     private List<Warehouse> warehouses;
     private Context context;
 

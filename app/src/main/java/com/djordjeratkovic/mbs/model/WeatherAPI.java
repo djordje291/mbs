@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class WeatherAPI {
 
-    @SerializedName("daily")
+    @SerializedName("main")
     private Weather weather;
 
     public WeatherAPI(Weather weather) {

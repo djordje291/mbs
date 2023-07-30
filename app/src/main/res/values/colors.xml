@@ -11,4 +11,5 @@
     <color name="blue_light">#2F5CBF</color>
     <color name="red">#FF0000</color>
     <color name="red_light">#FD7C7C</color>
+    <color name="yellow">#F9DC5C</color>
 </resources>
