@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_12"
             android:gravity="center"
-            android:text="@{weather != null ? Integer.toString(weather.pressure) : null}"
+            android:text="@{weather != null ? Integer.toString(weather.pressure) + `mBar` : null}"
             android:textColor="@color/blue_light"
             android:textSize="@dimen/_16ssp"
             android:visibility="@{weather != null ? View.VISIBLE : View.GONE}"
