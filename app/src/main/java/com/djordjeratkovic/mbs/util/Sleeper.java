@@ -33,7 +33,7 @@ public class Sleeper {
                 try {
                     Thread.sleep(1000);
                 } catch (Exception e) {
-                } // Just catch the InterruptedException
+                }
                 handler.post(new Runnable() {
                     public void run() {
                         if (list.isEmpty() && list2.isEmpty()) {
